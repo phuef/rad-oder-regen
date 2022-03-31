@@ -1,53 +1,34 @@
 <template>
-  <div class="hello">
-    test
-     <template>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-    outlined
-  >
-    <v-list-item three-line>
-      <v-list-item-content>
-        <div class="text-overline mb-4">
-          OVERLINE
-        </div>
-        <v-list-item-title class="text-h5 mb-1">
-          Headline 5
-        </v-list-item-title>
-        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-      </v-list-item-content>
-
-      <v-list-item-avatar
-        tile
-        size="80"
-        color="grey"
-      ></v-list-item-avatar>
-    </v-list-item>
-
+  <v-container>
+   <v-flex v-for="dummeSpruech in dummeSprueche" :key="dummeSpruech" >
+     <v-card class="mx-auto"
+    color="#26c6da"
+    dark
+    max-width="400"
+>
+  <v-card-text class="text-h5 font-weight-bold">
+      "{{dummeSpruech}}"
+    </v-card-text>
     <v-card-actions>
-      <v-btn
-        outlined
-        rounded
-        text
-      >
-        Button
-      </v-btn>
+      
     </v-card-actions>
-  </v-card>
-</template>
-  </div>
+   </v-card>
+   </v-flex>
+  </v-container>
 </template>
 
 <script>
-export default {
-  name: 'HelloWorld',
-  props: {
+  export default {
+    name: 'HelloWorld',
 
+    data: () => ({
+      dummeSprueche: [ 
+        "Wenn man die Augen zu macht klingt der Regen nach Applaus",
+        "Auch Regen ist schön, wenn man die Sonne im Herzen hat",
+        "Es gibt kein schlechtes Wetter, nur schlechte Frisuren",
+        "Da hat wohl jemand seinen Teller nicht aufgegessen gestern",
+        "Bist du aus Zucker?",
+      ],
+    }),
   }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
