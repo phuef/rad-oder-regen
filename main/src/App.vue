@@ -1,7 +1,7 @@
 <template>
 
   <v-app>
-    
+
     <v-app-bar
       app
       color="#35682d"
@@ -20,8 +20,8 @@
     </v-app-bar>
 
     <v-main>
-      <ButtonsMain @current-event="currentEvent" :weatherData="weatherData"></ButtonsMain>
-      <HelloWorld/>
+      <ButtonsMain @current-event="currentEvent" @hour-selected="hourSelected" :weatherData="weatherData"></ButtonsMain>
+      <HelloWorld :showDummenSpruch="showDummenSpruch" :currentlySelectedHour="currentlySelectedHour" />
     </v-main>
   </v-app>
 </template>
@@ -40,12 +40,18 @@ export default {
 
   data: () => ({
     weatherData:null,
+    showDummenSpruch:false,
+    currentlySelectedHour:null,
   }),
   methods:{
     currentEvent(value){
       console.log(value);
       this.weatherData=value;
+      this.showDummenSpruch=true;
 
+    },
+    hourSelected(value){
+      this.currentlySelectedHour=value;
     }
   }
 };

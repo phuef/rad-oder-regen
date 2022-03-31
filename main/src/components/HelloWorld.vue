@@ -1,13 +1,13 @@
 <template>
-  <v-container>
-   <v-flex v-for="dummeSpruech in dummeSprueche" :key="dummeSpruech" >
+  <v-container v-if="showDummenSpruch">
+   <v-flex>
      <v-card class="mx-auto"
     color="#26c6da"
     dark
     max-width="400"
 >
   <v-card-text class="text-h5 font-weight-bold">
-      "{{dummeSpruech}}"
+      "{{dummerSpruch}}" {{currentlySelectedHour}}
     </v-card-text>
     <v-card-actions>
       
@@ -20,6 +20,10 @@
 <script>
   export default {
     name: 'HelloWorld',
+    props: {
+      showDummenSpruch:{default: false},
+      currentlySelectedHour:{default:false},
+    },
 
     data: () => ({
       dummeSprueche: [ 
@@ -30,5 +34,9 @@
         "Bist du aus Zucker?",
       ],
     }),
+     created(){
+        const idx = Math.floor(Math.random() * this.dummeSprueche.length);
+        this.dummerSpruch=this.dummeSprueche[idx];
+      }
   }
 </script>
