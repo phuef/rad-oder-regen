@@ -1,8 +1,5 @@
 <template>
     <v-container>
-          <v-card-title>Sollte ich heute mit dem Rad fahren?</v-card-title>
-          <v-btn elevation="2" @click="showCurrentWeather()">jetzt</v-btn>
-          <v-btn elevation="2" @click="showWeatherInAnHour()">in einer Stunde</v-btn>
           <v-row justify="space-around" v-if="andereZeit">
             <v-time-picker
               class="mt-4"
@@ -12,9 +9,10 @@
               @click:hour="selectingHourIfUseHoursOnly"
             ></v-time-picker>
           </v-row>
-
-  <v-card-title v-if="isWeatherData()">{{hours}} </v-card-title>
-
+          <v-row justify="space-around" v-if="andereZeit">
+              <v-btn rounded elevation="2" @click="showCurrentWeather()">jetzt</v-btn>
+              <v-btn rounded elevation="2" @click="showWeatherInAnHour()">in einer Stunde</v-btn>
+            </v-row>
     </v-container>
 </template>
 <script>
@@ -52,7 +50,7 @@
         this.$nextTick(() => {
           this.$refs.picker.selectingHour = true;
           this.hours=this.$refs.picker.inputHour;
-          this.$emit('hours-selected', this.$refs.picker.inputHour)
+          this.$emit('hour-selected', this.$refs.picker.inputHour)
         });
   }},
   created(){
@@ -68,11 +66,6 @@
             this.$emit('current-event', responseJSON)
             this.dataResponse=responseJSON;
           })
-      /*.then(response => {
-        console.log(response);
-        this.$emit('current-event', response)
-        this.dataResponse=response.JSON;
-      })*/
       .catch(err => {
         console.error(err);
       });
@@ -80,6 +73,3 @@
 }
 </script>
 
-<style>
-
-</style>

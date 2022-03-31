@@ -1,6 +1,7 @@
 <template>
 
-  <v-app>
+  <v-app background-image="./assets/Backgroundlogo.png"
+          >
 
     <v-app-bar
       app
@@ -11,17 +12,19 @@
     <v-img
     max-height="60"
     max-width="60"
-    src="./assets/zyro-image.png">
+    src="./assets/rad_oder_regen_logo.png">
 
     </v-img>
-    <v-toolbar-title>Rad oder Regen</v-toolbar-title>   
+    <v-spacer></v-spacer>
+    <v-toolbar-title>Rad oder Regen?</v-toolbar-title>   
 
       <v-spacer></v-spacer>
+      <v-icon color="yellow" :v-if="lightbulb()">mdi-lightbulb-on</v-icon>
     </v-app-bar>
 
     <v-main>
+      <HelloWorld :showDummenSpruch="showDummenSpruch" :currentlySelectedHour="currentlySelectedHour" :weatherData="weatherData"/>
       <ButtonsMain @current-event="currentEvent" @hour-selected="hourSelected" :weatherData="weatherData"></ButtonsMain>
-      <HelloWorld :showDummenSpruch="showDummenSpruch" :currentlySelectedHour="currentlySelectedHour" />
     </v-main>
   </v-app>
 </template>
@@ -52,7 +55,14 @@ export default {
     },
     hourSelected(value){
       this.currentlySelectedHour=value;
+    },
+    lightbulb(){
+      return true;
     }
   }
 };
 </script>
+<style>#app {
+  background: url('./assets/rad_oder_regen_logo.png') no-repeat center center fixed !important;
+  background-size: cover;
+}</style>
