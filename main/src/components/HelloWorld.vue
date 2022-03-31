@@ -20,10 +20,12 @@
             mdi-thermometer
           </v-icon>
           <span class="subheading mr-2">{{computeWeatherData().temp}}°C</span>
+          <v-divider></v-divider>
           <v-icon class="mr-1">
             mdi-weather-rainy
           </v-icon>
           <span class="subheading mr-2">{{computeWeatherData().precip}}</span>
+          <v-divider></v-divider>
           <span class="mr-1">·</span>
           <v-icon class="mr-1">
             mdi-water-percent
