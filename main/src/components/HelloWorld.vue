@@ -56,8 +56,10 @@
         "Du sparst dir die Dusche",
       ],
       dummeSpruecheRegenKleiner1:[
-        "Bist du aus Zucker",
-        "Da hat wohl jemand seinen Teller gestern nicht aufgegessen"
+        "Bist du aus Zucker?",
+        "Da hat wohl jemand seinen Teller gestern nicht aufgegessen",
+        "Du brauchst nichtmal ne Jacke",
+        "Stell dich nicht so an",
       ],
       dummeSpruecheRegen1bis5:[
         "Es geht im Leben nicht darum zu warten bis das Unwetter vorbei ist sondern zu lernen im Regen zu tanzen",
@@ -68,22 +70,27 @@
       dummeSpruecheSchnee: [
         "Schnee ist auch nur Konfetti das aus den Wolken fällt",
         "Wo nicht glatt ist, kannst du fahren",
-        "Du kannst mit dem Schlitten fahren"
+        "Du kannst mit dem Schlitten fahren",
+        "Rutsch nicht aus",
       ],
       dummeSpruecheGutesWetter: [
         "Fahr doch",
         "Besser wirds nicht",
-        "Genieß die frische Luft"
+        "Genieß die frische Luft",
+        "Schwing dich auf den Sattel",
       ],
     }),
     methods:{
       computeWeatherData(){
-        console.log(this.weatherData);
         var current=this.weatherData.days[0].hours[this.currentlySelectedHour];
         return current;
       },
       getColor(){
         if (this.computeWeatherData().preciptype){
+          if(this.computeWeatherData().precipprob==0)
+          {
+            return '#ffc125'
+          }
           if(this.computeWeatherData().preciptype[0]=="rain")
           {
             return '#63b8ff'
@@ -91,17 +98,13 @@
           else if(this.computeWeatherData().preciptype[0]=="snow"){
             return '#8c8c8c'
           }
+          else{return '#ffc125'}
         }
         else{return '#ffc125'}
-        /*switch (this.computeWeatherData().preciptype){
-          case ["snow"]: return '#8c8c8c';
-          case null: return '#ffc125';
-          case ["rain"]: return '#63b8ff';
-        }*/
       },
       dummerSpruchGenerator(){
         var val= this.computeWeatherData().precip;
-        if(this.computeWeatherData()?.preciptype[0]=="snow"){
+        if(this.computeWeatherData()?.preciptype[0]=="snow" && this.computeWeatherData()?.precipprob>0){
           return this.randomSpruch(this.dummeSpruecheSchnee);
         }
         else if(val== 0.0){return this.randomSpruch(this.dummeSpruecheGutesWetter);}

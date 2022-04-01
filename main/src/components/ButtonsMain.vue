@@ -43,7 +43,11 @@
       },
       showWeatherInAnHour(){
         var temp= this.time.substring(0,2);
-        temp++;
+        if (temp==23){
+          temp=1;
+        }
+        else{
+          temp++;}
         if (temp<10)
         {
           this.$emit('hour-selected', temp);
@@ -76,7 +80,7 @@
     this.$emit('hour-selected', hour);
   },
   created(){
-    fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/m%C3%BCnster/2022-03-31/2022-03-31?unitGroup=metric&elements=datetime%2Ctemp%2Cprecip%2Cprecipprob%2Cprecipcover%2Cpreciptype&include=fcst%2Cstatsfcst%2Cdays%2Chours%2Ccurrent&key=EETCRGZNWWFRHX2FA59KZAZCB&contentType=json", {
+    fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/m%C3%BCnster/2022-04-01/2022-04-01?unitGroup=metric&elements=datetime%2Ctemp%2Cprecip%2Cprecipprob%2Cprecipcover%2Cpreciptype%2Csnow%2Csunrise%2Csunset&include=hours&key=QJEKWXMURS4FYKN88J9CYFK6Y&contentType=json", {
         "method": "GET",
         "headers": {
         }
